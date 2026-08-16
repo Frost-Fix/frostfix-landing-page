@@ -28,35 +28,34 @@ const CustomerTopNav: FC = () => {
             top={0}
             zIndex={5}
         >
-            <NextLink href="/" passHref>
-                <Link display="flex" alignItems="center" gap={2}>
-                    <Image
-                        src="/images/horai_logo.svg"
-                        alt="FrostFix"
-                        boxSize="32px"
-                    />
-                    <Text fontWeight={700} color="var(--season-primary)">
-                        FrostFix
-                    </Text>
-                </Link>
-            </NextLink>
+            <Link as={NextLink} href="/" display="flex" alignItems="center" gap={2}>
+                <Image
+                    src="/images/horai_logo.svg"
+                    alt="FrostFix"
+                    boxSize="32px"
+                />
+                <Text fontWeight={700} color="var(--season-primary)">
+                    FrostFix
+                </Text>
+            </Link>
 
             <HStack spacing={[3, 6]}>
                 {NAV_LINKS.map((link) => (
-                    <NextLink key={link.href} href={link.href} passHref>
-                        <Link
-                            fontSize="sm"
-                            fontWeight={600}
-                            display={{ base: "none", sm: "block" }}
-                            color={
-                                router.pathname === link.href
-                                    ? "var(--season-primary)"
-                                    : "gray.500"
-                            }
-                        >
-                            {link.label}
-                        </Link>
-                    </NextLink>
+                    <Link
+                        key={link.href}
+                        as={NextLink}
+                        href={link.href}
+                        fontSize="sm"
+                        fontWeight={600}
+                        display={{ base: "none", sm: "block" }}
+                        color={
+                            router.pathname === link.href
+                                ? "var(--season-primary)"
+                                : "gray.500"
+                        }
+                    >
+                        {link.label}
+                    </Link>
                 ))}
                 <Button
                     size="sm"

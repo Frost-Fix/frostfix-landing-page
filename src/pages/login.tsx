@@ -61,11 +61,14 @@ const Login: NextPage = () => {
                 footer={
                     <Text fontSize="sm" color="gray.500">
                         New to FrostFix?{" "}
-                        <NextLink href="/signup" passHref>
-                            <Link color="var(--season-primary)" fontWeight={600}>
-                                Create an account
-                            </Link>
-                        </NextLink>
+                        <Link
+                            as={NextLink}
+                            href="/signup"
+                            color="var(--season-primary)"
+                            fontWeight={600}
+                        >
+                            Create an account
+                        </Link>
                     </Text>
                 }
             >
@@ -91,17 +94,17 @@ const Login: NextPage = () => {
                             placeholder="Your password"
                         />
                     </FormControl>
-                    <NextLink href="/forgot-password" passHref>
-                        <Link
-                            fontSize="sm"
-                            color="gray.500"
-                            display="block"
-                            textAlign="right"
-                            mb={6}
-                        >
-                            Forgot password?
-                        </Link>
-                    </NextLink>
+                    <Link
+                        as={NextLink}
+                        href="/forgot-password"
+                        fontSize="sm"
+                        color="gray.500"
+                        display="block"
+                        textAlign="right"
+                        mb={6}
+                    >
+                        Forgot password?
+                    </Link>
                     <PrimaryButton
                         type="submit"
                         w="100%"

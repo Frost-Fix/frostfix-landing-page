@@ -90,32 +90,32 @@ const Hero: FC = () => {
                             enjoy top-of-the-line customer service.
                         </MotionText>
 
-                        {/* Link to Waitlist page */}
+                        {/* Link to the in-house booking flow */}
                         <Flex justifyContent="center" mt={6}>
-                            <Link href="/booking/new" passHref>
-                                <MotionButton
-                                    fontSize={"0.9rem"}
-                                    backgroundColor={"#0B2545"} // Original background color
-                                    color={"white"}
-                                    px={5}
-                                    borderRadius={"0.8rem"}
-                                    paddingTop={"1.7rem"}
-                                    paddingBottom={"1.7rem"}
-                                    paddingLeft={"2rem"}
-                                    paddingRight={"2rem"}
-                                    _hover={{
-                                        backgroundColor: "#123a6b", // Lighter shade on hover
-                                        transform: "scale(1.05)", // Slightly enlarge the button
-                                        boxShadow:
-                                            "0 4px 12px rgba(0, 0, 0, 0.2)", // Add a soft shadow
-                                    }}
-                                    transition="all 0.3s ease" // Smooth transition for hover effects
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                >
-                                    Book Now
-                                </MotionButton>
-                            </Link>
+                            <MotionButton
+                                as={Link}
+                                href="/booking/new"
+                                fontSize={"0.9rem"}
+                                backgroundColor={"#0B2545"} // Original background color
+                                color={"white"}
+                                px={5}
+                                borderRadius={"0.8rem"}
+                                paddingTop={"1.7rem"}
+                                paddingBottom={"1.7rem"}
+                                paddingLeft={"2rem"}
+                                paddingRight={"2rem"}
+                                _hover={{
+                                    backgroundColor: "#123a6b", // Lighter shade on hover
+                                    transform: "scale(1.05)", // Slightly enlarge the button
+                                    boxShadow:
+                                        "0 4px 12px rgba(0, 0, 0, 0.2)", // Add a soft shadow
+                                }}
+                                sx={{ transition: "all 0.3s ease" }} // motion()'s own `transition` prop is for animation config, not CSS - set the hover transition via sx instead
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            >
+                                Book Now
+                            </MotionButton>
                         </Flex>
 
                         {/* Animated Phone Image */}

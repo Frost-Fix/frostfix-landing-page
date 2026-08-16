@@ -5,7 +5,15 @@ import { Button, ButtonProps } from "@chakra-ui/react";
 // the dashboards - was copy-pasted with the same bg/color/hover props in a
 // dozen files. Centralized here so the hover/press feel is consistent and
 // only needs to be tuned in one place.
-const PrimaryButton = forwardRef<HTMLButtonElement, ButtonProps>(
+//
+// `href` isn't part of ButtonProps (Button renders a <button> by default),
+// but callers pass `as={NextLink} href="..."` to render it as a styled
+// link - added here so that combination typechecks.
+interface PrimaryButtonProps extends ButtonProps {
+    href?: string;
+}
+
+const PrimaryButton = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
     (props, ref) => (
         <Button
             ref={ref}
