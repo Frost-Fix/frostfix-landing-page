@@ -159,3 +159,46 @@ a {
     border: 1px solid rgb(var(--card-border-rgb));
     border-radius: var(--border-radius);
 }
+
+/*
+ * Seasonal theme tokens, set via [data-season] on <html> by SeasonContext.
+ * These drive the booking wizard + dashboards; the existing marketing
+ * components keep their own hardcoded colors and only pick up the subtle
+ * accent pieces (season pill, gradients) that reference these vars.
+ */
+:root,
+[data-season="winter"] {
+    --season-primary: #0b2545;
+    --season-secondary: #4c9aff;
+    --season-accent: #eaf4ff;
+    --season-bg-from: #eaf4ff;
+    --season-bg-to: #ffffff;
+    --season-emoji: "\2744";
+}
+
+[data-season="spring"] {
+    --season-primary: #22543d;
+    --season-secondary: #68d391;
+    --season-accent: #eafaf1;
+    --season-bg-from: #eafaf1;
+    --season-bg-to: #ffffff;
+    --season-emoji: "\1F331";
+}
+
+[data-season="summer"] {
+    --season-primary: #7b341e;
+    --season-secondary: #f6ad55;
+    --season-accent: #fff7ec;
+    --season-bg-from: #fff7ec;
+    --season-bg-to: #ffffff;
+    --season-emoji: "\2600";
+}
+
+[data-season="fall"] {
+    --season-primary: #7b3410;
+    --season-secondary: #dd6b20;
+    --season-accent: #fff1e6;
+    --season-bg-from: #fff1e6;
+    --season-bg-to: #ffffff;
+    --season-emoji: "\1F342";
+}
