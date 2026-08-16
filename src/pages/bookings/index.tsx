@@ -64,9 +64,9 @@ const BookingsList: NextPage = () => {
                     <Heading fontSize={["xl", "2xl"]} color="var(--season-primary)">
                         My Bookings
                     </Heading>
-                    <NextLink href="/booking/new" passHref>
-                        <PrimaryButton as="a">+ New Booking</PrimaryButton>
-                    </NextLink>
+                    <PrimaryButton as={NextLink} href="/booking/new">
+                        + New Booking
+                    </PrimaryButton>
                 </HStack>
 
                 <Tabs
@@ -92,45 +92,44 @@ const BookingsList: NextPage = () => {
                 ) : (
                     <VStack spacing={3} align="stretch">
                         {bookings.map((booking) => (
-                            <NextLink
+                            <Link
                                 key={booking._id}
+                                as={NextLink}
                                 href={`/bookings/${booking._id}`}
-                                passHref
+                                _hover={{ textDecoration: "none" }}
                             >
-                                <Link _hover={{ textDecoration: "none" }}>
-                                    <HStack
-                                        justify="space-between"
-                                        p={4}
-                                        border="1px solid"
-                                        borderColor="gray.100"
-                                        borderRadius="1rem"
-                                        _hover={{
-                                            borderColor: "var(--season-secondary)",
-                                        }}
-                                    >
-                                        <HStack spacing={4}>
-                                            <Text fontSize="2xl">
-                                                {ICON_EMOJI[booking.service.icon]}
+                                <HStack
+                                    justify="space-between"
+                                    p={4}
+                                    border="1px solid"
+                                    borderColor="gray.100"
+                                    borderRadius="1rem"
+                                    _hover={{
+                                        borderColor: "var(--season-secondary)",
+                                    }}
+                                >
+                                    <HStack spacing={4}>
+                                        <Text fontSize="2xl">
+                                            {ICON_EMOJI[booking.service.icon]}
+                                        </Text>
+                                        <Box>
+                                            <Text fontWeight={700}>
+                                                {booking.service.name}
                                             </Text>
-                                            <Box>
-                                                <Text fontWeight={700}>
-                                                    {booking.service.name}
-                                                </Text>
-                                                <Text fontSize="sm" color="gray.500">
-                                                    {new Date(
-                                                        booking.scheduledDate
-                                                    ).toLocaleDateString("en-US", {
-                                                        weekday: "short",
-                                                        month: "short",
-                                                        day: "numeric",
-                                                    })}
-                                                </Text>
-                                            </Box>
-                                        </HStack>
-                                        <BookingStatusBadge status={booking.status} />
+                                            <Text fontSize="sm" color="gray.500">
+                                                {new Date(
+                                                    booking.scheduledDate
+                                                ).toLocaleDateString("en-US", {
+                                                    weekday: "short",
+                                                    month: "short",
+                                                    day: "numeric",
+                                                })}
+                                            </Text>
+                                        </Box>
                                     </HStack>
-                                </Link>
-                            </NextLink>
+                                    <BookingStatusBadge status={booking.status} />
+                                </HStack>
+                            </Link>
                         ))}
                     </VStack>
                 )}

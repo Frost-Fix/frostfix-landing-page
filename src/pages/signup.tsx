@@ -74,11 +74,14 @@ const Signup: NextPage = () => {
                 footer={
                     <Text fontSize="sm" color="gray.500">
                         Already have an account?{" "}
-                        <NextLink href="/login" passHref>
-                            <Link color="var(--season-primary)" fontWeight={600}>
-                                Log in
-                            </Link>
-                        </NextLink>
+                        <Link
+                            as={NextLink}
+                            href="/login"
+                            color="var(--season-primary)"
+                            fontWeight={600}
+                        >
+                            Log in
+                        </Link>
                     </Text>
                 }
             >

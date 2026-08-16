@@ -143,15 +143,14 @@ const ContractorDashboard: NextPage = () => {
                                 borderRadius="1rem"
                             >
                                 <HStack justify="space-between" mb={2}>
-                                    <NextLink
+                                    <Link
+                                        as={NextLink}
                                         href={`/contractor/jobs/${booking._id}`}
-                                        passHref
+                                        fontWeight={700}
                                     >
-                                        <Link fontWeight={700}>
-                                            {ICON_EMOJI[booking.service.icon]}{" "}
-                                            {booking.service.name}
-                                        </Link>
-                                    </NextLink>
+                                        {ICON_EMOJI[booking.service.icon]}{" "}
+                                        {booking.service.name}
+                                    </Link>
                                     <BookingStatusBadge status={booking.status} />
                                 </HStack>
                                 <Text fontSize="sm" color="gray.500" mb={1}>

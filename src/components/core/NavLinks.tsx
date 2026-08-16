@@ -73,35 +73,35 @@ const NavLinks: FC<NavLinksProps> = ({ direction = "row", onClose }) => {
                         </ScrollLink>
                     ) : (
                         // Fallback to NextLink to handle full-page navigation when not on the homepage
-                        <NextLink href={`/#${link.href}`} passHref>
-                            <ChakraLink
-                                fontSize={{ base: "1.25rem", md: "1rem" }} // Larger font size on mobile
-                                color={"black"}
-                                fontWeight={600}
-                                position="relative"
-                                _hover={{
-                                    color: "blue.500",
-                                    _after: {
-                                        width: "100%",
-                                    },
-                                }}
-                                _after={{
-                                    content: '""',
-                                    position: "absolute",
-                                    width: "0%",
-                                    height: "3px",
-                                    bottom: "-6px",
-                                    left: "0",
-                                    backgroundColor: "blue.500",
-                                    borderRadius: "8px",
-                                    transition:
-                                        "width 0.4s ease, background-color 0.3s ease",
-                                }}
-                                onClick={onClose}
-                            >
-                                {link.name}
-                            </ChakraLink>
-                        </NextLink>
+                        <ChakraLink
+                            as={NextLink}
+                            href={`/#${link.href}`}
+                            fontSize={{ base: "1.25rem", md: "1rem" }} // Larger font size on mobile
+                            color={"black"}
+                            fontWeight={600}
+                            position="relative"
+                            _hover={{
+                                color: "blue.500",
+                                _after: {
+                                    width: "100%",
+                                },
+                            }}
+                            _after={{
+                                content: '""',
+                                position: "absolute",
+                                width: "0%",
+                                height: "3px",
+                                bottom: "-6px",
+                                left: "0",
+                                backgroundColor: "blue.500",
+                                borderRadius: "8px",
+                                transition:
+                                    "width 0.4s ease, background-color 0.3s ease",
+                            }}
+                            onClick={onClose}
+                        >
+                            {link.name}
+                        </ChakraLink>
                     )}
                 </Box>
             ))}

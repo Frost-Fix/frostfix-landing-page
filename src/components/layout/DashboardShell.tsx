@@ -48,29 +48,30 @@ const DashboardShell: FC<DashboardShellProps> = ({
     const NavLinksList = ({ onNavigate }: { onNavigate?: () => void }) => (
         <>
             {navItems.map((item) => (
-                <NextLink key={item.href} href={item.href} passHref>
-                    <Link
-                        onClick={onNavigate}
-                        fontWeight={600}
-                        fontSize="sm"
-                        px={3}
-                        py={2}
-                        borderRadius="0.5rem"
-                        bg={
-                            router.pathname === item.href
-                                ? "var(--season-accent)"
-                                : "transparent"
-                        }
-                        color={
-                            router.pathname === item.href
-                                ? "var(--season-primary)"
-                                : "gray.600"
-                        }
-                        w={{ base: "100%", md: "auto" }}
-                    >
-                        {item.label}
-                    </Link>
-                </NextLink>
+                <Link
+                    key={item.href}
+                    as={NextLink}
+                    href={item.href}
+                    onClick={onNavigate}
+                    fontWeight={600}
+                    fontSize="sm"
+                    px={3}
+                    py={2}
+                    borderRadius="0.5rem"
+                    bg={
+                        router.pathname === item.href
+                            ? "var(--season-accent)"
+                            : "transparent"
+                    }
+                    color={
+                        router.pathname === item.href
+                            ? "var(--season-primary)"
+                            : "gray.600"
+                    }
+                    w={{ base: "100%", md: "auto" }}
+                >
+                    {item.label}
+                </Link>
             ))}
         </>
     );
