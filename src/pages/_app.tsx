@@ -7,7 +7,7 @@ import { SeasonProvider } from "@/context/SeasonContext";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <SeasonProvider>
                 <AuthProvider>
                     <Component {...pageProps} />

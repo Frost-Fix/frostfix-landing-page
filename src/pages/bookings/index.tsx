@@ -10,7 +10,6 @@ import {
     HStack,
     Text,
     Heading,
-    Button,
     Tabs,
     TabList,
     Tab,
@@ -21,6 +20,7 @@ import { apiGet } from "@/lib/api";
 import { Booking } from "@/types/booking";
 import CustomerTopNav from "@/components/booking/CustomerTopNav";
 import BookingStatusBadge from "@/components/booking/BookingStatusBadge";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
 import { ICON_EMOJI } from "@/lib/season";
 
 const BookingsList: NextPage = () => {
@@ -65,9 +65,7 @@ const BookingsList: NextPage = () => {
                         My Bookings
                     </Heading>
                     <NextLink href="/booking/new" passHref>
-                        <Button as="a" bg="var(--season-primary)" color="white">
-                            + New Booking
-                        </Button>
+                        <PrimaryButton as="a">+ New Booking</PrimaryButton>
                     </NextLink>
                 </HStack>
 

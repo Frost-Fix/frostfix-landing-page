@@ -17,6 +17,7 @@ import { apiGet, apiPatch, ApiError } from "@/lib/api";
 import { Booking, BookingStatus, ContactInfo } from "@/types/booking";
 import DashboardShell from "@/components/layout/DashboardShell";
 import BookingStatusBadge from "@/components/booking/BookingStatusBadge";
+import { TIME_SLOT_LABEL } from "@/lib/season";
 
 const NAV_ITEMS = [
     { href: "/admin/dashboard", label: "Dashboard" },
@@ -188,7 +189,7 @@ const AdminBookings: NextPage = () => {
                                             month: "short",
                                             day: "numeric",
                                         })}{" "}
-                                        · {booking.timeSlot} ·{" "}
+                                        · {TIME_SLOT_LABEL[booking.timeSlot]} ·{" "}
                                         {booking.address.city}
                                     </Text>
                                     <Text fontSize="sm" color="gray.500" mb={3}>

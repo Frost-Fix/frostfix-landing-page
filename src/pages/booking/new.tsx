@@ -12,17 +12,22 @@ import {
     Text,
     Heading,
 } from "@chakra-ui/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRequireRole } from "@/lib/useRequireRole";
 import { apiPost, ApiError } from "@/lib/api";
 import { Address, PaymentMethod, Service, TimeSlot } from "@/types/booking";
 import { useToast } from "@chakra-ui/react";
 
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
 import StepIndicator from "@/components/booking/StepIndicator";
 import ServiceStep from "@/components/booking/ServiceStep";
 import AddressStep from "@/components/booking/AddressStep";
 import DateSlotStep from "@/components/booking/DateSlotStep";
 import PaymentStep from "@/components/booking/PaymentStep";
 import ReviewStep from "@/components/booking/ReviewStep";
+
+const MotionVStack = motion(VStack);
+const MotionBox = motion(Box);
 
 const STEP_LABELS = ["Service", "Address", "Date", "Payment", "Review"];
 
@@ -120,7 +125,10 @@ const NewBooking: NextPage = () => {
                     <title>Booking Confirmed</title>
                 </Head>
                 <Center minH="100dvh" px={4}>
-                    <VStack
+                    <MotionVStack
+                        initial={{ opacity: 0, scale: 0.94, y: 8 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
                         spacing={4}
                         maxW="420px"
                         textAlign="center"
@@ -138,16 +146,14 @@ const NewBooking: NextPage = () => {
                             assigned to your job.
                         </Text>
                         <VStack w="100%" spacing={3} pt={2}>
-                            <Button
+                            <PrimaryButton
                                 w="100%"
-                                bg="var(--season-primary)"
-                                color="white"
                                 onClick={() =>
                                     router.push(`/bookings/${confirmedBookingId}`)
                                 }
                             >
                                 View booking
-                            </Button>
+                            </PrimaryButton>
                             <Button
                                 w="100%"
                                 variant="outline"
@@ -156,7 +162,7 @@ const NewBooking: NextPage = () => {
                                 Go to my bookings
                             </Button>
                         </VStack>
-                    </VStack>
+                    </MotionVStack>
                 </Center>
             </>
         );
@@ -181,59 +187,69 @@ const NewBooking: NextPage = () => {
                         p={[5, 8]}
                         mt={8}
                     >
-                        {step === 0 && (
-                            <ServiceStep
-                                selectedServiceId={service?._id || null}
-                                onSelect={setService}
-                            />
-                        )}
-                        {step === 1 && (
-                            <AddressStep
-                                address={address}
-                                contactPhone={contactPhone}
-                                onChangeAddress={setAddress}
-                                onChangePhone={setContactPhone}
-                            />
-                        )}
-                        {step === 2 && (
-                            <DateSlotStep
-                                homeownerToken={session!.token}
-                                scheduledDate={scheduledDate}
-                                timeSlot={timeSlot}
-                                onSelectDate={(date) => {
-                                    setScheduledDate(date);
-                                    setTimeSlot(null);
-                                    setSlotLabel("");
-                                }}
-                                onSelectSlot={(slot, label) => {
-                                    setTimeSlot(slot);
-                                    setSlotLabel(label);
-                                }}
-                            />
-                        )}
-                        {step === 3 && (
-                            <PaymentStep
-                                paymentMethod={paymentMethod}
-                                notes={notes}
-                                onSelectPaymentMethod={setPaymentMethod}
-                                onChangeNotes={setNotes}
-                            />
-                        )}
-                        {step === 4 &&
-                            service &&
-                            scheduledDate &&
-                            timeSlot &&
-                            paymentMethod && (
-                                <ReviewStep
-                                    service={service}
-                                    address={address}
-                                    contactPhone={contactPhone}
-                                    scheduledDate={scheduledDate}
-                                    slotLabel={slotLabel}
-                                    paymentMethod={paymentMethod}
-                                    notes={notes}
-                                />
-                            )}
+                        <AnimatePresence mode="wait" initial={false}>
+                            <MotionBox
+                                key={step}
+                                initial={{ opacity: 0, x: 12 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -12 }}
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                            >
+                                {step === 0 && (
+                                    <ServiceStep
+                                        selectedServiceId={service?._id || null}
+                                        onSelect={setService}
+                                    />
+                                )}
+                                {step === 1 && (
+                                    <AddressStep
+                                        address={address}
+                                        contactPhone={contactPhone}
+                                        onChangeAddress={setAddress}
+                                        onChangePhone={setContactPhone}
+                                    />
+                                )}
+                                {step === 2 && (
+                                    <DateSlotStep
+                                        homeownerToken={session!.token}
+                                        scheduledDate={scheduledDate}
+                                        timeSlot={timeSlot}
+                                        onSelectDate={(date) => {
+                                            setScheduledDate(date);
+                                            setTimeSlot(null);
+                                            setSlotLabel("");
+                                        }}
+                                        onSelectSlot={(slot, label) => {
+                                            setTimeSlot(slot);
+                                            setSlotLabel(label);
+                                        }}
+                                    />
+                                )}
+                                {step === 3 && (
+                                    <PaymentStep
+                                        paymentMethod={paymentMethod}
+                                        notes={notes}
+                                        onSelectPaymentMethod={setPaymentMethod}
+                                        onChangeNotes={setNotes}
+                                    />
+                                )}
+                                {step === 4 &&
+                                    service &&
+                                    scheduledDate &&
+                                    timeSlot &&
+                                    paymentMethod && (
+                                        <ReviewStep
+                                            service={service}
+                                            address={address}
+                                            contactPhone={contactPhone}
+                                            scheduledDate={scheduledDate}
+                                            slotLabel={slotLabel}
+                                            paymentMethod={paymentMethod}
+                                            notes={notes}
+                                        />
+                                    )}
+                            </MotionBox>
+                        </AnimatePresence>
 
                         <HStack justify="space-between" pt={8}>
                             <Button
@@ -244,25 +260,19 @@ const NewBooking: NextPage = () => {
                                 Back
                             </Button>
                             {step < STEP_LABELS.length - 1 ? (
-                                <Button
-                                    bg="var(--season-primary)"
-                                    color="white"
-                                    _hover={{ opacity: 0.9 }}
+                                <PrimaryButton
                                     isDisabled={!canGoNext()}
                                     onClick={() => setStep((s) => s + 1)}
                                 >
                                     Continue
-                                </Button>
+                                </PrimaryButton>
                             ) : (
-                                <Button
-                                    bg="var(--season-primary)"
-                                    color="white"
-                                    _hover={{ opacity: 0.9 }}
+                                <PrimaryButton
                                     isLoading={isSubmitting}
                                     onClick={handleSubmit}
                                 >
                                     Confirm booking
-                                </Button>
+                                </PrimaryButton>
                             )}
                         </HStack>
                     </Box>

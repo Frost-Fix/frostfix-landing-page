@@ -2,14 +2,10 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import {
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-    useToast,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Text, useToast } from "@chakra-ui/react";
 import AuthLayout from "@/components/auth/AuthLayout";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
+import PasswordInput from "@/components/core/Inputs/PasswordInput";
 import { apiPost, ApiError } from "@/lib/api";
 
 const ResetPassword: NextPage = () => {
@@ -67,27 +63,28 @@ const ResetPassword: NextPage = () => {
                 subtitle="Choose something you haven't used before"
             >
                 <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-                    <FormControl mb={6} isRequired>
+                    <FormControl mb={2} isRequired>
                         <FormLabel>New password</FormLabel>
-                        <Input
+                        <PasswordInput
                             size="lg"
-                            type="password"
+                            autoComplete="new-password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             placeholder="At least 8 characters"
                         />
                     </FormControl>
-                    <Button
+                    <Text fontSize="xs" color="gray.400" mb={6}>
+                        Use 8+ characters with an uppercase letter, a number,
+                        and a symbol.
+                    </Text>
+                    <PrimaryButton
                         type="submit"
                         w="100%"
                         size="lg"
-                        bg="var(--season-primary)"
-                        color="white"
                         isLoading={isLoading}
-                        _hover={{ opacity: 0.9 }}
                     >
                         Reset password
-                    </Button>
+                    </PrimaryButton>
                 </form>
             </AuthLayout>
         </>

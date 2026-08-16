@@ -13,7 +13,6 @@ import {
     Select,
     Input,
     Textarea,
-    Button,
     SimpleGrid,
     useToast,
     Divider,
@@ -22,6 +21,7 @@ import { useRequireRole } from "@/lib/useRequireRole";
 import { apiGet, apiPatch, apiPost, ApiError } from "@/lib/api";
 import { Service, ServiceIcon, ServiceSeason } from "@/types/booking";
 import DashboardShell from "@/components/layout/DashboardShell";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
 import { ICON_EMOJI, serviceSeasonLabel } from "@/lib/season";
 
 const NAV_ITEMS = [
@@ -248,15 +248,13 @@ const AdminServices: NextPage = () => {
                                 required
                             />
                         </SimpleGrid>
-                        <Button
+                        <PrimaryButton
                             type="submit"
                             alignSelf="flex-start"
-                            bg="var(--season-primary)"
-                            color="white"
                             isLoading={isCreating}
                         >
                             Add service
-                        </Button>
+                        </PrimaryButton>
                     </VStack>
                 </Box>
             </DashboardShell>

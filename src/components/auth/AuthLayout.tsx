@@ -1,6 +1,9 @@
 import { FC, ReactNode } from "react";
 import { Box, Center, Heading, Text, VStack } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import Logo from "@/components/core/Logo";
+
+const MotionVStack = motion(VStack);
 
 interface AuthLayoutProps {
     title: string;
@@ -21,7 +24,10 @@ const AuthLayout: FC<AuthLayoutProps> = ({
             bgGradient="linear(to-b, var(--season-bg-from), var(--season-bg-to))"
         >
             <Center py={[8, 12]} px={4}>
-                <VStack
+                <MotionVStack
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                     spacing={6}
                     w="100%"
                     maxW="420px"
@@ -30,7 +36,7 @@ const AuthLayout: FC<AuthLayoutProps> = ({
                     boxShadow="0 10px 40px rgba(11, 37, 69, 0.08)"
                     p={[6, 8]}
                 >
-                    <Logo />
+                    <Logo size="64px" />
 
                     <VStack spacing={1} textAlign="center">
                         <Heading
@@ -51,7 +57,7 @@ const AuthLayout: FC<AuthLayoutProps> = ({
                     </VStack>
 
                     {footer && <Box pt={2}>{footer}</Box>}
-                </VStack>
+                </MotionVStack>
             </Center>
         </Box>
     );

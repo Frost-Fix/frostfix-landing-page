@@ -1,4 +1,4 @@
-import { Season, ServiceIcon, ServiceSeason } from "@/types/booking";
+import { Season, ServiceIcon, ServiceSeason, TimeSlot } from "@/types/booking";
 
 export const SEASONS: Season[] = ["WINTER", "SPRING", "SUMMER", "FALL"];
 
@@ -42,4 +42,15 @@ export const ICON_EMOJI: Record<ServiceIcon, string> = {
     droplet: "💧",
     home: "🏠",
     tool: "🛠️",
+};
+
+// The backend only ever stores/returns the enum key (e.g. "MORNING") - the
+// human label ("8:00 AM - 11:00 AM") only exists in the availability
+// response at booking time, so any screen rendering a saved booking's
+// timeSlot needs this mapping rather than printing the raw enum.
+export const TIME_SLOT_LABEL: Record<TimeSlot, string> = {
+    MORNING: "8:00 AM - 11:00 AM",
+    MIDDAY: "11:00 AM - 2:00 PM",
+    AFTERNOON: "2:00 PM - 5:00 PM",
+    EVENING: "5:00 PM - 8:00 PM",
 };

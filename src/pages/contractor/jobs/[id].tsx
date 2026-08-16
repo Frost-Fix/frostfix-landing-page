@@ -10,7 +10,6 @@ import {
     HStack,
     Text,
     Heading,
-    Button,
     Divider,
     useToast,
 } from "@chakra-ui/react";
@@ -19,7 +18,8 @@ import { apiGet, apiPatch, ApiError } from "@/lib/api";
 import { Booking, ContactInfo } from "@/types/booking";
 import DashboardShell from "@/components/layout/DashboardShell";
 import BookingStatusBadge from "@/components/booking/BookingStatusBadge";
-import { ICON_EMOJI } from "@/lib/season";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
+import { ICON_EMOJI, TIME_SLOT_LABEL } from "@/lib/season";
 
 const NAV_ITEMS = [{ href: "/contractor/dashboard", label: "My Jobs" }];
 
@@ -134,7 +134,9 @@ const ContractorJobDetail: NextPage = () => {
                         <Text color="gray.500" fontSize="sm">
                             Time
                         </Text>
-                        <Text fontWeight={600}>{booking.timeSlot}</Text>
+                        <Text fontWeight={600}>
+                            {TIME_SLOT_LABEL[booking.timeSlot]}
+                        </Text>
                     </HStack>
                     <HStack justify="space-between" align="flex-start">
                         <Text color="gray.500" fontSize="sm">
@@ -175,17 +177,15 @@ const ContractorJobDetail: NextPage = () => {
 
                 {(booking.status === "ASSIGNED" ||
                     booking.status === "IN_PROGRESS") && (
-                    <Button
+                    <PrimaryButton
                         w="100%"
-                        bg="var(--season-primary)"
-                        color="white"
                         isLoading={isUpdating}
                         onClick={advanceStatus}
                     >
                         {booking.status === "ASSIGNED"
                             ? "Start job"
                             : "Mark complete"}
-                    </Button>
+                    </PrimaryButton>
                 )}
             </DashboardShell>
         </>
