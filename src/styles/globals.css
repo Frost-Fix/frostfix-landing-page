@@ -66,35 +66,18 @@
     /* Card border color */
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
-
-        --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4),
-                rgba(1, 65, 255, 0));
-        --secondary-glow: linear-gradient(to bottom right,
-                rgba(1, 65, 255, 0),
-                rgba(1, 65, 255, 0),
-                rgba(1, 65, 255, 0.3));
-
-        --tile-start-rgb: 2, 13, 46;
-        --tile-end-rgb: 2, 5, 19;
-        --tile-border: conic-gradient(#ffffff80,
-                #ffffff40,
-                #ffffff30,
-                #ffffff20,
-                #ffffff10,
-                #ffffff10,
-                #ffffff80);
-
-        --callout-rgb: 20, 20, 20;
-        --callout-border-rgb: 108, 108, 108;
-        --card-rgb: 100, 100, 100;
-        --card-border-rgb: 200, 200, 200;
-    }
-}
+/*
+ * This product doesn't have a designed dark mode anywhere — the marketing
+ * site hardcodes light colors and the app UI is built against a light
+ * palette. A `prefers-color-scheme: dark` override used to live here and
+ * force `--foreground-rgb` to white via `!important` on `html, body`,
+ * which cascaded straight through Chakra components that don't set their
+ * own `color` (inputs, form labels, plain Text) — on any device with
+ * system dark mode on, that made typed text render white on a white card
+ * and made a lot of other text unreadable. Removed rather than "fixed",
+ * since supporting a real dark mode would mean re-theming every screen.
+ * Chakra's color mode is also pinned to light in src/theme/index.ts.
+ */
 
 * {
     box-sizing: border-box;
@@ -109,12 +92,16 @@ html,
 body {
     font-family: "SF Pro", sans-serif;
     max-width: 100vw;
-    color: rgb(var(--foreground-rgb)) !important;
+    color: rgb(var(--foreground-rgb));
     /* Set the foreground color */
-    background: rgb(var(--background-start-rgb)) !important;
+    background: rgb(var(--background-start-rgb));
     /* Set the background to white */
     overflow-x: hidden;
     /* Prevent horizontal scrolling */
+    color-scheme: light;
+    /* Stops browsers from painting native form controls (inputs, selects,
+       date pickers) in a dark-mode palette that no author style here
+       accounts for. */
 }
 
 /* Background glow effect */

@@ -59,12 +59,14 @@ const DateSlotStep: FC<DateSlotStepProps> = ({
     const dateOptions = useMemo(buildDateOptions, []);
     const [slots, setSlots] = useState<SlotAvailability[]>([]);
     const [isLoadingSlots, setIsLoadingSlots] = useState(false);
+    const [loadError, setLoadError] = useState(false);
 
     useEffect(() => {
         if (!scheduledDate) return;
 
         let cancelled = false;
         setIsLoadingSlots(true);
+        setLoadError(false);
 
         apiGet<{ data: { slots: SlotAvailability[] } }>(
             "/api/homeowners/profiles/mine/bookings/availability",
@@ -74,7 +76,10 @@ const DateSlotStep: FC<DateSlotStepProps> = ({
                 if (!cancelled) setSlots(res.data.slots);
             })
             .catch(() => {
-                if (!cancelled) setSlots([]);
+                if (!cancelled) {
+                    setSlots([]);
+                    setLoadError(true);
+                }
             })
             .finally(() => {
                 if (!cancelled) setIsLoadingSlots(false);
@@ -136,6 +141,15 @@ const DateSlotStep: FC<DateSlotStepProps> = ({
                         <Center py={6}>
                             <Spinner color="var(--season-primary)" />
                         </Center>
+                    ) : loadError ? (
+                        <Text color="red.500" textAlign="center" py={6}>
+                            Couldn&apos;t load times for this day. Try
+                            selecting the date again.
+                        </Text>
+                    ) : slots.length === 0 ? (
+                        <Text color="gray.400" textAlign="center" py={6}>
+                            No time slots available for this day.
+                        </Text>
                     ) : (
                         <SimpleGrid columns={[2, 4]} spacing={3}>
                             {slots.map((slot) => (

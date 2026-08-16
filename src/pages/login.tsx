@@ -4,7 +4,6 @@ import NextLink from "next/link";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import {
-    Button,
     FormControl,
     FormLabel,
     Input,
@@ -13,6 +12,8 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import AuthLayout from "@/components/auth/AuthLayout";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
+import PasswordInput from "@/components/core/Inputs/PasswordInput";
 import { apiPost, ApiError } from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
 
@@ -74,6 +75,7 @@ const Login: NextPage = () => {
                         <Input
                             size="lg"
                             type="email"
+                            autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="you@example.com"
@@ -81,9 +83,9 @@ const Login: NextPage = () => {
                     </FormControl>
                     <FormControl mb={2} isRequired>
                         <FormLabel>Password</FormLabel>
-                        <Input
+                        <PasswordInput
                             size="lg"
-                            type="password"
+                            autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Your password"
@@ -100,17 +102,14 @@ const Login: NextPage = () => {
                             Forgot password?
                         </Link>
                     </NextLink>
-                    <Button
+                    <PrimaryButton
                         type="submit"
                         w="100%"
                         size="lg"
-                        bg="var(--season-primary)"
-                        color="white"
                         isLoading={isLoading}
-                        _hover={{ opacity: 0.9 }}
                     >
                         Log in
-                    </Button>
+                    </PrimaryButton>
                 </form>
             </AuthLayout>
         </>

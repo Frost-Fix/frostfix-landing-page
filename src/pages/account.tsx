@@ -9,7 +9,6 @@ import {
     HStack,
     Text,
     Heading,
-    Button,
     FormControl,
     FormLabel,
     Input,
@@ -21,6 +20,7 @@ import { useRequireRole } from "@/lib/useRequireRole";
 import { apiGet, apiPatch, apiPost, ApiError } from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
 import CustomerTopNav from "@/components/booking/CustomerTopNav";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
 
 interface HomeownerProfile {
     _id: string;
@@ -179,15 +179,13 @@ const Account: NextPage = () => {
                             placeholder="(555) 123-4567"
                         />
                     </FormControl>
-                    <Button
+                    <PrimaryButton
                         alignSelf="flex-start"
-                        bg="var(--season-primary)"
-                        color="white"
                         isLoading={isSavingProfile}
                         onClick={saveProfile}
                     >
                         Save
-                    </Button>
+                    </PrimaryButton>
                 </VStack>
 
                 <Heading fontSize="lg" mb={4}>
@@ -236,15 +234,13 @@ const Account: NextPage = () => {
                         />
                     </FormControl>
                     <Divider />
-                    <Button
+                    <PrimaryButton
                         alignSelf="flex-start"
-                        bg="var(--season-primary)"
-                        color="white"
                         isLoading={isSavingHome}
                         onClick={saveHome}
                     >
                         Save address
-                    </Button>
+                    </PrimaryButton>
                 </VStack>
             </Box>
         </>

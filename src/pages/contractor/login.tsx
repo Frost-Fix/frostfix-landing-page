@@ -2,8 +2,10 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import { Button, FormControl, FormLabel, Input, useToast } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, useToast } from "@chakra-ui/react";
 import AuthLayout from "@/components/auth/AuthLayout";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
+import PasswordInput from "@/components/core/Inputs/PasswordInput";
 import { apiPost, ApiError } from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
 
@@ -55,30 +57,28 @@ const ContractorLogin: NextPage = () => {
                         <Input
                             size="lg"
                             type="email"
+                            autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </FormControl>
                     <FormControl mb={6} isRequired>
                         <FormLabel>Password</FormLabel>
-                        <Input
+                        <PasswordInput
                             size="lg"
-                            type="password"
+                            autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </FormControl>
-                    <Button
+                    <PrimaryButton
                         type="submit"
                         w="100%"
                         size="lg"
-                        bg="var(--season-primary)"
-                        color="white"
                         isLoading={isLoading}
-                        _hover={{ opacity: 0.9 }}
                     >
                         Log in
-                    </Button>
+                    </PrimaryButton>
                 </form>
             </AuthLayout>
         </>

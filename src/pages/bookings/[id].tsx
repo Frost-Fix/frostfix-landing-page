@@ -20,7 +20,7 @@ import { apiGet, apiPatch, ApiError } from "@/lib/api";
 import { Booking, ContactInfo } from "@/types/booking";
 import CustomerTopNav from "@/components/booking/CustomerTopNav";
 import BookingStatusBadge from "@/components/booking/BookingStatusBadge";
-import { ICON_EMOJI } from "@/lib/season";
+import { ICON_EMOJI, TIME_SLOT_LABEL } from "@/lib/season";
 
 const STATUS_ORDER = [
     "PENDING_ASSIGNMENT",
@@ -181,7 +181,9 @@ const BookingDetail: NextPage = () => {
                         <Text color="gray.500" fontSize="sm">
                             Time
                         </Text>
-                        <Text fontWeight={600}>{booking.timeSlot}</Text>
+                        <Text fontWeight={600}>
+                            {TIME_SLOT_LABEL[booking.timeSlot]}
+                        </Text>
                     </HStack>
                     <HStack justify="space-between">
                         <Text color="gray.500" fontSize="sm">

@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useState, FormEvent } from "react";
 import {
-    Button,
     FormControl,
     FormLabel,
     Input,
@@ -10,6 +9,7 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import AuthLayout from "@/components/auth/AuthLayout";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
 import { apiPost, ApiError } from "@/lib/api";
 
 const ForgotPassword: NextPage = () => {
@@ -57,22 +57,20 @@ const ForgotPassword: NextPage = () => {
                             <Input
                                 size="lg"
                                 type="email"
+                                autoComplete="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
                             />
                         </FormControl>
-                        <Button
+                        <PrimaryButton
                             type="submit"
                             w="100%"
                             size="lg"
-                            bg="var(--season-primary)"
-                            color="white"
                             isLoading={isLoading}
-                            _hover={{ opacity: 0.9 }}
                         >
                             Send reset link
-                        </Button>
+                        </PrimaryButton>
                     </form>
                 )}
             </AuthLayout>

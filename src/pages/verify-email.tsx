@@ -2,9 +2,10 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import { Button, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import AuthLayout from "@/components/auth/AuthLayout";
+import PrimaryButton from "@/components/core/Buttons/PrimaryButton";
 import { apiGet, ApiError } from "@/lib/api";
 
 const VerifyEmail: NextPage = () => {
@@ -59,6 +60,8 @@ const VerifyEmail: NextPage = () => {
                         <FormLabel>Verification code</FormLabel>
                         <Input
                             size="lg"
+                            inputMode="numeric"
+                            autoComplete="one-time-code"
                             textAlign="center"
                             letterSpacing="0.5em"
                             fontSize="xl"
@@ -70,17 +73,14 @@ const VerifyEmail: NextPage = () => {
                             placeholder="123456"
                         />
                     </FormControl>
-                    <Button
+                    <PrimaryButton
                         type="submit"
                         w="100%"
                         size="lg"
-                        bg="var(--season-primary)"
-                        color="white"
                         isLoading={isLoading}
-                        _hover={{ opacity: 0.9 }}
                     >
                         Verify
-                    </Button>
+                    </PrimaryButton>
                 </form>
                 <Text fontSize="xs" color="gray.400" pt={2} textAlign="center">
                     Didn&apos;t get a code? Check your spam folder, or sign up

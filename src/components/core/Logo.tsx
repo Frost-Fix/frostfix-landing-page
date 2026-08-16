@@ -1,16 +1,18 @@
 import NextLink from "next/link";
 import { FC } from "react";
-import { Link as ChakraLink } from "@chakra-ui/react";
-
 import { Image } from "@chakra-ui/react";
 
-const Logo: FC = () => {
+interface LogoProps {
+    size?: string;
+}
+
+const Logo: FC<LogoProps> = ({ size = "150px" }) => {
     return (
         <NextLink href={`/#`} passHref>
             <Image
                 src="/images/horai_logo.svg" // Make sure this is the correct path
                 alt="Horai Logo"
-                boxSize="150px" // You can use Chakra's size utilities
+                boxSize={size}
                 objectFit="contain"
             />
         </NextLink>
