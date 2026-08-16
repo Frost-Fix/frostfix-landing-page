@@ -12,6 +12,7 @@ import {
     Image,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import SeasonPill from "@/components/booking/SeasonPill";
 
 // Motion elements from framer-motion
 const MotionBox = motion(Box);
@@ -57,6 +58,10 @@ const Hero: FC = () => {
                         flexDirection={"column"}
                         px={[4, 8]}
                     >
+                        <Box mb={4}>
+                            <SeasonPill />
+                        </Box>
+
                         {/* Animated Heading */}
                         <MotionHeading
                             fontSize={["3xl", "5xl", "7xl"]}
@@ -87,7 +92,7 @@ const Hero: FC = () => {
 
                         {/* Link to Waitlist page */}
                         <Flex justifyContent="center" mt={6}>
-                            <Link href="https://horaiapp.setmore.com" passHref>
+                            <Link href="/booking/new" passHref>
                                 <MotionButton
                                     fontSize={"0.9rem"}
                                     backgroundColor={"#0B2545"} // Original background color

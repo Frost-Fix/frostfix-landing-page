@@ -5,9 +5,9 @@ import { Button, Flex } from "@chakra-ui/react";
 const ActionButton: FC = () => {
     return (
         <Flex>
-            <Link href="https://horaiapp.setmore.com" passHref>
+            <Link href="/booking/new" passHref>
                 {" "}
-                {/* Link to the waitlist page */}
+                {/* Link to the in-house booking flow */}
                 <Button
                     fontSize={"0.9rem"}
                     backgroundColor={"#0B2545"} // Original background color
