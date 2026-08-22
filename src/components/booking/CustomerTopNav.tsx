@@ -5,8 +5,8 @@ import { Flex, HStack, Link, Button, Image, Text } from "@chakra-ui/react";
 import { useAuth } from "@/context/AuthContext";
 
 const NAV_LINKS = [
-    { href: "/booking/new", label: "Book a Service" },
     { href: "/bookings", label: "My Bookings" },
+    { href: "/booking/new", label: "Book a Service" },
     { href: "/account", label: "Account" },
 ];
 
@@ -28,7 +28,7 @@ const CustomerTopNav: FC = () => {
             top={0}
             zIndex={5}
         >
-            <Link as={NextLink} href="/" display="flex" alignItems="center" gap={2}>
+            <Link as={NextLink} href="/bookings" display="flex" alignItems="center" gap={2}>
                 <Image
                     src="/images/horai_logo.svg"
                     alt="FrostFix"

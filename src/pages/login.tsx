@@ -39,7 +39,7 @@ const Login: NextPage = () => {
             const redirect =
                 typeof router.query.redirect === "string"
                     ? router.query.redirect
-                    : "/booking/new";
+                    : "/bookings";
             router.push(redirect);
         } catch (err) {
             const message =
