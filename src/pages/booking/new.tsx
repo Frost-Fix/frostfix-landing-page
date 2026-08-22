@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {
@@ -11,6 +12,7 @@ import {
     VStack,
     Text,
     Heading,
+    Link,
 } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRequireRole } from "@/lib/useRequireRole";
@@ -178,6 +180,21 @@ const NewBooking: NextPage = () => {
                 bgGradient="linear(to-b, var(--season-bg-from), var(--season-bg-to))"
             >
                 <Box maxW="720px" mx="auto" px={[4, 6]} py={[6, 10]}>
+                    <Link
+                        as={NextLink}
+                        href="/bookings"
+                        display="inline-flex"
+                        alignItems="center"
+                        gap={1}
+                        fontSize="sm"
+                        fontWeight={600}
+                        color="gray.500"
+                        mb={6}
+                        _hover={{ color: "var(--season-primary)" }}
+                    >
+                        ← Back to My Bookings
+                    </Link>
+
                     <StepIndicator steps={STEP_LABELS} currentStep={step} />
 
                     <Box
